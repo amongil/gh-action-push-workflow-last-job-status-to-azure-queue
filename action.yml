@@ -22,3 +22,6 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.job-status }}
+branding:
+  icon: send
+  color: blue
