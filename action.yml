@@ -1,0 +1,24 @@
+# action.yml
+name: Send job status to Azure Queue
+description: 'In a GitHub workflow, send last job status and metadata to Azure Queue'
+inputs:
+  STORAGE_ACCOUNT_NAME: # storage account name where the Azure queue is located
+    description: 'Storage account name where the Azure queue is located'
+    required: true
+  STORAGE_ACCOUNT_KEY: # storage account key in order to authenticate to
+    description: 'Storage account key in order to authenticate to'
+    required: true
+  QUEUE_NAME: # name of the queue where the messages are going to be sent to
+    description: 'Name of the queue where the messages are going to be sent to'
+    required: true
+  JOB_STATUS:  # exit status of last job
+    description: 'Exit status of last job'
+    required: true
+outputs:
+  data-sent: # id of output
+    description: 'The json data sent to the Azure Queue'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.job-status }}
